@@ -2,8 +2,8 @@ class Song
   attr_accessor :name, :artist, :genre
 
   @@count = 0
-
   @@genres = []
+  @@artists = []
 
   def initialize(name, artist, genre)
     @name = name
@@ -12,6 +12,7 @@ class Song
 
     @@count +=1
     @@genres << self.genre
+    @@artists << self.artist
 
   end
 
@@ -20,11 +21,20 @@ class Song
   end
 
   def self.genres
-    genres = Hash.new
+    genre = Hash.new
+    genre.each_with_object(Hash.new(0)) { |genre,counts| counts[genre] += 1 }
+  end
 
-    words.each_with_object(Hash.new(0)) { |word,counts| counts[word] += 1 }
+  def self.genre_counts
 
-    @@genres
+  end
+
+  def self.artists
+    artist = Hash.new
+    artist.each_with_object(Hash.new(0)) {|artist, counts| counts [artist]}
+  end
+
+  def self.artist_count
 
   end
 end
